@@ -1,35 +1,37 @@
 " ~/.config/nvim/init.vim
 let mapleader = ' '
-let maplocalleader = ' '
 
 " == General configuration ==
 
-syntax on                   
-set nocompatible            
-set background=dark        
-set showmatch               
-set ignorecase 
-set mouse=v 
-set hlsearch
-set wildmode=longest,list 
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set number
-set showcmd
+syntax on
+set autoindent
+set background=dark
 set cursorline
-set lazyredraw
+set expandtab
+set hlsearch
+set ignorecase 
 set incsearch
-set smartindent
-set nowrap
-set smartcase
-set noswapfile
+set lazyredraw
+set mouse=v 
 set nobackup
-set undodir=~/.config/nvim/undodir
-set undofile
-set t_Co=256
+set nocompatible           
+set noswapfile
+set number
+set nowrap
+set shiftwidth=4
+set showcmd
+set showmatch               
+set smartcase
+set smartindent
 set splitbelow
 set splitright 
+set tabstop=4
+set timeoutlen=3000
+set ttimeoutlen=100
+set termguicolors
+set undodir=~/.config/nvim/undodir
+set undofile
+set wildmode=longest,list 
 
 " == Keymaps ==
 
@@ -39,8 +41,18 @@ nnoremap : ;
 vnoremap ; :
 vnoremap : ;
 
-" Open fzf.vim in the current project
-nmap <leader>f :Files<CR>
+" Pane splitting made easier
+nnoremap <leader>j <C-W><C-J>
+nnoremap <leader>k <C-W><C-K>
+nnoremap <leader>l <C-W><C-L>
+nnoremap <leader>h <C-W><C-H>
+
+" Open fzf.vim in the current directory
+nmap <leader>fz :Files<CR>
+
+" Map profile editing and resourcing
+nnoremap <leader>pr :e<space>$HOME/.config/nvim/init.vim<cr>
+nnoremap <leader>rp :source<space>$HOME/.config/nvim/init.vim<cr>
 
 " Allow tab to trigger auto-complete, refresh on backspace
 inoremap <silent><expr> <TAB>
