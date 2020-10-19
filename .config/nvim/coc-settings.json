@@ -1,0 +1,26 @@
+{
+    "coc.preferences.formatOnSaveFileTypes": [
+        "css",
+        "html",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "markdown",
+        "scss",
+        "python",
+        "sql",
+        "typescript",
+        "typescriptreact",
+        "xml"
+    ],
+    "eslint.autoFixOnSave": true,
+    "eslint.filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+    "suggest.enablePreset": false,
+    "tsserver.log": "verbose",
+    "tsserver.npm": "/usr/local/bin/npm"
+}

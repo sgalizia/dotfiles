@@ -140,5 +140,4 @@ export PATH="${PATH}:/mnt/c/Program Files/Oracle/VirtualBox"
 export PATH="$(yarn global bin):$PATH"
 
 # Use ripgrep instead of find
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g"!
-{**/.git,**/dist,**/node_modules}/*"'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{**/.git,**/dist,**/node_modules}/*"'
