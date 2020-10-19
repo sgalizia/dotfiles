@@ -112,6 +112,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'sonph/onehalf', {'rtp': 'vim/' }
+Plug 'dracula/vim', {'name': 'dracula'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
@@ -126,8 +127,8 @@ Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " == Extras ==
-colorscheme onehalfdark
-let g:airline_theme='onehalfdark'
+colorscheme dracula
+let g:airline_theme='dracula'
 let g:airline_powerline_fonts=1
 
 " vimwiki 
