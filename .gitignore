@@ -1,4 +1,4 @@
-.config/yarn
-.config/fontforge
-.config/nvim/undodir/*
-.config/coc/*
+.config/
+.config/nvim/undodir
+!.config/nvim
+!.config/coc

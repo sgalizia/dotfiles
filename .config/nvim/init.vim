@@ -88,7 +88,10 @@ function! s:show_documentation()
 endfunction
 
 " Highlight the symbol and its references when holding the cursor
-autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup coc_highlight
+  autocmd!
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup END
 
 " Symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
@@ -122,6 +125,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'bling/vim-bufferline'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'jparise/vim-graphql'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " This needs to be loaded last
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -134,6 +138,9 @@ let g:airline_powerline_fonts=1
 " vimwiki 
 let g:vimwiki_list = [{'path': '~/doc/wiki/', 'path_html': '~/doc/wiki/html/'}]
 
+" format with goimports instead of gofmt
+let g:go_fmt_command = "goimports"
+
 " fzf run time path
 set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 
@@ -142,3 +149,17 @@ function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1] =~# '\s'
 endfunction
+
+" NERDTree autocmds
+augroup nerd_tree
+  autocmd!
+  " automatically open NERDTree when vim starts
+  autocmd VimEnter * NERDTree
+augroup end
+
+" Golang autocommands
+augroup golang
+  autocmd!
+  autocmd BufWritePre *.go :call CocAction('organizeImport')
+  autocmd FileType go nnoremap <buffer> <leader>gr :GoRun<cr>
+augroup end
