@@ -1,4 +1,5 @@
 .config/
 .config/nvim/undodir
 !.config/nvim
+!.config/nvim/spell
 !.config/coc

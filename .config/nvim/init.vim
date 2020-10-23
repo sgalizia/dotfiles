@@ -50,7 +50,7 @@ nnoremap <leader>l <C-W><C-L>
 nnoremap <leader>h <C-W><C-H>
 
 " Make enter work to select coc suggestion
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<cr>"
+inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
 
 " Open the NERDTree file tree
 nnoremap <silent> <leader>b :NERDTreeToggle<CR>
@@ -94,13 +94,32 @@ augroup coc_highlight
 augroup END
 
 " Symbol renaming
-nmap <leader>rn <Plug>(coc-rename)
+nnoremap <leader>rn <Plug>(coc-rename)
 
 " quick fix
 nnoremap <leader>qf :CocAction quickfix<cr>;
 
 " Easier shorcut for saving buffer
 nnoremap <leader>ss :w<cr>
+
+" Convert word to uppercase 
+inoremap <c-u> <esc>viwUea
+nnoremap <c-u> viwU<esc>
+
+" Add empty line below cursor position
+nnoremap <leader>lb mpo<esc>`p
+
+" Add empty line above cursor position
+nnoremap <leader>la mpO<esc>`p
+
+" Buffer closing shortcuts with :Bdelete
+nnoremap <leader>bdo :Bdelete other<cr>
+nnoremap <leader>bdh :Bdelete hidden<cr>
+
+" == Abbreviations ==
+
+" common typo fixes
+iabbrev conts const
 
 " == Plugins ==
 
@@ -126,6 +145,7 @@ Plug 'bling/vim-bufferline'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'jparise/vim-graphql'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'Asheq/close-buffers.vim'
 " This needs to be loaded last
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -144,11 +164,13 @@ let g:go_fmt_command = "goimports"
 " fzf run time path
 set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 
-" Check if backsapce was just pressed
+" Check if backspace was just pressed
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1] =~# '\s'
 endfunction
+
+" == Autocommands ==
 
 " NERDTree autocmds
 augroup nerd_tree
@@ -161,5 +183,12 @@ augroup end
 augroup golang
   autocmd!
   autocmd BufWritePre *.go :call CocAction('organizeImport')
-  autocmd FileType go nnoremap <buffer> <leader>gr :GoRun<cr>
+  autocmd FileType go nnoremap <buffer> <c-g>r :GoRun<cr>
 augroup end
+
+" Comment line commands per filetype
+augroup comment_line
+  autocmd!
+  autocmd FileType typescript nnoremap <buffer> <localleader>c I//<esc>
+augroup end
+
