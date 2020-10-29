@@ -141,11 +141,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'airblade/vim-gitgutter'
-Plug 'bling/vim-bufferline'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'jparise/vim-graphql'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'Asheq/close-buffers.vim'
+Plug 'jiangmiao/auto-pairs'
 " This needs to be loaded last
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -176,13 +176,12 @@ endfunction
 augroup nerd_tree
   autocmd!
   " automatically open NERDTree when vim starts
-  autocmd VimEnter * NERDTree
+  autocmd VimEnter * if &filetype !=# 'gitcommit' | NERDTree | endif
 augroup end
 
 " Golang autocommands
 augroup golang
   autocmd!
-  autocmd BufWritePre *.go :call CocAction('organizeImport')
   autocmd FileType go nnoremap <buffer> <c-g>r :GoRun<cr>
 augroup end
 
