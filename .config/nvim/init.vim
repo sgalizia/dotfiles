@@ -3,7 +3,7 @@ let mapleader = ' '
 
 " == General configuration ==
 
-filetype plugin on
+filetype plugin indent on
 syntax on
 set autoindent
 set background=dark
@@ -116,6 +116,9 @@ nnoremap <leader>la mpO<esc>`p
 nnoremap <leader>bdo :Bdelete other<cr>
 nnoremap <leader>bdh :Bdelete hidden<cr>
 
+" TagBar mappings
+nnoremap <leader>tt :TagbarToggle<CR>
+
 " == Abbreviations ==
 
 " common typo fixes
@@ -125,27 +128,32 @@ iabbrev conts const
 
 " managed by [vim-plug](https://github.com/junegunn/vim-plug)
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'vimwiki/vimwiki'
+Plug 'airblade/vim-gitgutter'
+Plug 'Asheq/close-buffers.vim'
 Plug 'christoomey/vim-system-copy'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'bling/vim-bufferline'
+Plug 'dracula/vim', {'name': 'dracula'}
+Plug 'editorconfig/editorconfig-vim'
 Plug 'elzr/vim-json'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'jparise/vim-graphql'
+Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
+Plug 'junegunn/fzf.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/tagbar'
+Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'sonph/onehalf', {'rtp': 'vim/' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-obsession'
 Plug 'vim-airline/vim-airline'
-Plug 'sonph/onehalf', {'rtp': 'vim/' }
-Plug 'dracula/vim', {'name': 'dracula'}
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
-Plug 'junegunn/fzf.vim'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'scrooloose/nerdtree'
-Plug 'airblade/vim-gitgutter'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'jparise/vim-graphql'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'Asheq/close-buffers.vim'
-Plug 'jiangmiao/auto-pairs'
+Plug 'vimwiki/vimwiki'
 " This needs to be loaded last
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -154,6 +162,7 @@ call plug#end()
 colorscheme dracula
 let g:airline_theme='dracula'
 let g:airline_powerline_fonts=1
+let g:airline#extensions#obsession#enabled = 1
 
 " vimwiki 
 let g:vimwiki_list = [{'path': '~/doc/wiki/', 'path_html': '~/doc/wiki/html/'}]
@@ -169,6 +178,15 @@ function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1] =~# '\s'
 endfunction
+
+let g:NERDTreeIgnore = ['node_modules', 'dist', 'build']
+
+" Prevent vim-plug calls from interfering with NERDTree
+let g:plug_window = 'noautocmd vertical topleft new'
+
+" Tagbar customization
+let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+let g:tagbar_sort = 0
 
 " == Autocommands ==
 
