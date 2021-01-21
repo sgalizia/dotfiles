@@ -119,6 +119,9 @@ nnoremap <leader>bdh :Bdelete hidden<cr>
 " TagBar mappings
 nnoremap <leader>tt :TagbarToggle<CR>
 
+" Shortcut to clear highlighting
+nnoremap <leader>nh :nohl<cr>
+
 " == Abbreviations ==
 
 " common typo fixes
@@ -163,6 +166,7 @@ colorscheme dracula
 let g:airline_theme='dracula'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#obsession#enabled = 1
+let g:airline#extension#tagbar#enabled = 0 
 
 " vimwiki 
 let g:vimwiki_list = [{'path': '~/doc/wiki/', 'path_html': '~/doc/wiki/html/'}]
@@ -185,7 +189,7 @@ let g:NERDTreeIgnore = ['node_modules', 'dist', 'build']
 let g:plug_window = 'noautocmd vertical topleft new'
 
 " Tagbar customization
-let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+" let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 let g:tagbar_sort = 0
 
 " == Autocommands ==
