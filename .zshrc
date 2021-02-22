@@ -65,9 +65,13 @@ alias grbc="git rebase --continue"
 alias gadd="git add -u && gs"
 alias gcm="git commit"
 alias gcb='git checkout $(git branch -a | fzf-tmux -d 15 --no-preview | sed "s/remotes\/origin\///g")'
+alias grlb='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs git branch -d'
 
 # Docker Shortcuts
 alias dc='docker-compose'
+
+# Python Aliases #
+alias python=python3
 
 ## Custom functions ##
 
@@ -109,3 +113,5 @@ export PATH="$(yarn global bin):$PATH"
 
 # Use ripgrep instead of find
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{**/.git,**/dist,**/node_modules}/*"'
+
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
