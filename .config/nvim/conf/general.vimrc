@@ -33,21 +33,5 @@ set ttimeoutlen=100
 set termguicolors
 set undodir=~/.config/nvim/undodir
 set undofile
+set updatetime=100
 set wildmode=longest,list 
-
-" == Functions ==
-
-" Check if backspace was just pressed
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1] =~# '\s'
-endfunction
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >=0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocActionAsync('doHover')
-  endif
-endfunction
-

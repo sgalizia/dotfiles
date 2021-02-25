@@ -35,6 +35,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+"Plug 'vimpostor/vim-tpipeline'
 " This needs to be loaded last
 Plug 'ryanoasis/vim-devicons'
 call plug#end()

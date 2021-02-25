@@ -31,6 +31,12 @@ inoremap <silent><expr> <TAB>
     \ <SID>check_back_space() ? "\<TAB>" :
     \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Check if backspace was just pressed
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1] =~# '\s'
+endfunction
+
 
 " GoTo code navigation
 nnoremap <silent> <leader>gd :call CocActionAsync('jumpDefinition')<cr>
@@ -42,6 +48,13 @@ nnoremap <silent> <leader>gp :call CocActionAsync('diagnosticPrevious')<cr>
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call<SID>show_documentation()<cr>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >=0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocActionAsync('doHover')
+  endif
+endfunction
 
 " Symbol renaming
 nnoremap <leader>rn <Plug>(coc-rename)
