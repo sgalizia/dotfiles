@@ -49,6 +49,7 @@ BULLETTRAIN_NVM_FG=black
 # Example aliases
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias profile="nvim ~/.zshrc"
+alias vprofile="nvim ~/.config/nvim/conf"
 alias clr="clear"
 alias refresh="source ~/.zshrc"
 

@@ -4,3 +4,5 @@
 !.config/nvim/spell
 !.config/nvim/conf
 !.config/coc
+!.config/lua
+!.config/init.lua

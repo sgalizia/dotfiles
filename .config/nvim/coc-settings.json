@@ -20,7 +20,8 @@
         "typescript",
         "typescriptreact"
     ],
-    "suggest.enablePreset": false,
+    "Lua.workspace.preloadFileSize": 200,
+   "suggest.enablePreset": false,
     "tsserver.log": "verbose",
     "tsserver.npm": "/usr/local/bin/npm"
 }

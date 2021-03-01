@@ -12,6 +12,7 @@ Plug 'dracula/vim', {'name': 'dracula'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'elzr/vim-json'
+Plug 'euclidianAce/BetterLua.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'heavenshell/vim-jsdoc', {'for': ['javascript', 'javascript.jsx', 'typescript'], 'do': 'make install'}
 Plug 'HerringtonDarkholme/yats.vim'
@@ -35,7 +36,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'vimpostor/vim-tpipeline'
 " This needs to be loaded last
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
