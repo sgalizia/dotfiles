@@ -93,24 +93,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
-# Deno Setup
-export DENO_INSTALL="/home/sam/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-
-# tabtab source for electron-forge package
-# uninstall by removing these lines or running `tabtab uninstall electron-forge`
-[[ -f /home/sam/.nvm/versions/node/v12.16.1/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /home/sam/.nvm/versions/node/v12.16.1/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.zsh
-
-# Go Global variables
-export GOROOT=/usr/local/go
-export GOPATH=/home/sam/workspace/tutorials/golang
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-
-# Add Yarn global packages to path
-export PATH="$(yarn global bin):$PATH"
 
 # Use ripgrep instead of find
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{**/.git,**/dist,**/node_modules}/*"'

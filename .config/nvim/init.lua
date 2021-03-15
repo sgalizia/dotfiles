@@ -2,6 +2,8 @@ local utils = require('utils')
 
 local cmd = vim.cmd
 local g = vim.g
+local api = vim.api
+local fn = vim.fn
 local indent = 2
 
 -- Map space to leader
@@ -92,13 +94,14 @@ utils.opt('w', 'wrap', false)
 
 -- Airline --
 g.airline_theme = 'molokai'
-g.airline_powerline_fonts = true
-g['airline#extensions#obsession#enabled'] = true
+g.airline_powerline_fonts = 1
+g['airline#extensions#obsession#enabled'] = 1
 g['airline#extensions#obsession#indicator_text'] = '$'
-g['airline#extensions#tagbar#enabled'] = false
-g['airline#extensions#bufferline#enabled'] = false
-g['airline#extensions#coc#enabled'] = true
-g['airline#extensions#fzf#enabled'] = true
+g['airline#extensions#tagbar#enabled'] = 0
+g['airline#extensions#bufferline#enabled'] = 1
+g['airline#extensions#coc#enabled'] = 1
+g['airline#extensions#fzf#enabled'] = 0
+g['airline#extensions#tabline#enabled'] = 0
 
 -- NERDTree --
 g.NERDTreeIgnore = { 'node_modules', 'dist', 'build' }
@@ -107,6 +110,9 @@ g.NERDTreeDirArrowCollapsible = ''
 g.NERDTreeFileExtensionHighlightFullName = 1
 g.NERDTreeExactMatchHighlightFullName = 1
 g.NERDTreePatternMatchHighlightFullName = 1
+
+-- Tagbar --
+g.tagbar_ctags_bin = '/usr/local/bin/ctags'
 
 ---- Keymaps ----
 
@@ -140,16 +146,8 @@ utils.map('n', '<leader>ff', ':Files<cr>')
 utils.map('n', '<leader>pw', ':Rg <c-r>=expand("<cword>")<cr><cr>')
 
 -- Allow tab to trigger auto-complete, refresh on backspace
-utils.map('i', '<tab>', "pumvisible() ? '<c-n>' : CheckBackSpace() ? '<tab>' : coc#refresh()", { expr = true, silent = true })
-utils.map('i', '<s-tab>', "pumvisible() ? '<c-p>' : '<c-h>'")
-vim.api.nvim_exec(
-[[
-function! CheckBackSpace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1] =~# '\s'
-endfunction
-]]
-, false)
+utils.map('i', '<tab>', 'v:lua.tab_complete()', { expr = true, silent = true })
+utils.map('i', '<s-tab>', 'v:lua.s_tab_complete()', { expr = true, silent = true })
 
 -- GoTo code navigation
 utils.map('n', '<leader>gd', ":call CocActionAsync('jumpDefinition')<cr>", { silent = true })
@@ -161,7 +159,7 @@ utils.map('n', '<leader>gp', ":call CocActionAsync('diagnosticPrevious')<cr>", {
 
 -- Use K to show documentation in the preview window
 utils.map('n', 'K', ':call ShowDocumentation()<cr>', { silent = true })
-vim.api.nvim_exec(
+api.nvim_exec(
 [[
 function! ShowDocumentation()
   if (index(['vim','help'], &filetype) >=0)
@@ -207,3 +205,8 @@ definitions['coc_highlight'] = {
   [[CursorHold * silent call CocActionAsync('highlight')]]
 }
 utils.nvim_create_augroups(definitions)
+
+---- Fix for NERDTree icons after source ----
+if fn.exists('g:loaded_webdevicons') then
+  cmd 'call webdevicons#refresh()'
+end
